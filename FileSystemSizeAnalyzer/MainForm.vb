@@ -153,22 +153,7 @@ Public Class MainForm
 
         Try
             Application.DoEvents()
-            Select Case level
-                Case 1
 
-                    level2Counter = 0
-                    level3Counter = 0
-                    level4Counter = 0
-                Case 2
-
-                    level3Counter = 0
-                    level4Counter = 0
-                Case 3
-
-                    level4Counter = 0
-                Case 4
-
-            End Select
             If path <> selectedDrive Then
                 Dim finfo As New IO.DirectoryInfo(path)
 
@@ -249,7 +234,22 @@ Public Class MainForm
                 Dim folders() As String = IO.Directory.GetDirectories(path)
                 For Each folder As String In folders
                     If processInterrupt Then GoTo LevelCheck
+                    Select Case level
+                        Case 1
 
+                            level2Counter = 0
+                            level3Counter = 0
+                            level4Counter = 0
+                        Case 2
+
+                            level3Counter = 0
+                            level4Counter = 0
+                        Case 3
+
+                            level4Counter = 0
+                        Case 4
+
+                    End Select
 
                     ParseFolders(folder, level + 1)
                     Select Case level
