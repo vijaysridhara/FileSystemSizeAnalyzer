@@ -38,7 +38,9 @@ Public Class MainForm
         With My.Application.Info.Version
             lblVersion.Text = String.Format(lblVersion.Text, .Major, .Minor, .Revision)
         End With
+        DataGridView1.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
     End Sub
+
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If Button1.Text = "Analyze" Then
@@ -348,5 +350,16 @@ LevelCheck:
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         Dim proc As New Process()
         proc.Start("https://github.com/VijaySridhara/")
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Private Sub DataGridView1_SortCompare(sender As Object, e As DataGridViewSortCompareEventArgs) Handles DataGridView1.SortCompare
+        If e.Column.Index = 1 Then
+            e.SortResult = CInt(e.CellValue1).CompareTo(CInt(e.CellValue2))
+            e.Handled = True
+        End If
     End Sub
 End Class
